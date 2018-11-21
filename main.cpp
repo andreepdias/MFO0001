@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     ThreadTest teste(4);
     
     Thread::SleepMS(10000);
-    
+    111
     return 0;
     */
     MapaTrem trens;
