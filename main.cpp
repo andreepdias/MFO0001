@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "class/threadtest.h"
+#include "class/redepetri.h"
 
 using namespace std;
 
@@ -17,6 +18,29 @@ int main(int argc, char **argv) {
     111
     return 0;
     */
+
+    RedePetri rede;
+    // rede.printMarcacoes();
+    // rede.printMatrizPre();
+    // rede.printMatrizPos();
+    // rede.printNomeLugares();
+    // rede.printNomeTransicoes();
+
+    vi t;
+
+    do{
+        t = rede.transicoesHabilitadas();
+        rede.printTransicoesHabilitadas(t);
+
+        rede.executarTransicao(t[0]);
+
+        Thread::SleepMS(1000);
+
+    }while((int)t.size() > 0);
+
+    return 0;
+    
+
     MapaTrem trens;
 
 

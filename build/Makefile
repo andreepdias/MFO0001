@@ -277,6 +277,33 @@ class/path.cpp.s:
 	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/path.cpp.s
 .PHONY : class/path.cpp.s
 
+class/redepetri.o: class/redepetri.cpp.o
+
+.PHONY : class/redepetri.o
+
+# target to build an object file
+class/redepetri.cpp.o:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/redepetri.cpp.o
+.PHONY : class/redepetri.cpp.o
+
+class/redepetri.i: class/redepetri.cpp.i
+
+.PHONY : class/redepetri.i
+
+# target to preprocess a source file
+class/redepetri.cpp.i:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/redepetri.cpp.i
+.PHONY : class/redepetri.cpp.i
+
+class/redepetri.s: class/redepetri.cpp.s
+
+.PHONY : class/redepetri.s
+
+# target to generate assembly for a file
+class/redepetri.cpp.s:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/redepetri.cpp.s
+.PHONY : class/redepetri.cpp.s
+
 class/threads/sema.o: class/threads/sema.cpp.o
 
 .PHONY : class/threads/sema.o
@@ -491,6 +518,9 @@ help:
 	@echo "... class/path.o"
 	@echo "... class/path.i"
 	@echo "... class/path.s"
+	@echo "... class/redepetri.o"
+	@echo "... class/redepetri.i"
+	@echo "... class/redepetri.s"
 	@echo "... class/threads/sema.o"
 	@echo "... class/threads/sema.i"
 	@echo "... class/threads/sema.s"

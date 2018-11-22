@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/trem.dir/class/path.cpp.o"
   "CMakeFiles/trem.dir/class/threadtest.cpp.o"
   "CMakeFiles/trem.dir/class/trem.cpp.o"
+  "CMakeFiles/trem.dir/class/redepetri.cpp.o"
   "trem.pdb"
   "trem"
 )

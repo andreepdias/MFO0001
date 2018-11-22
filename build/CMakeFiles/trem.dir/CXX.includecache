@@ -58,6 +58,34 @@ linep.h
 vector
 -
 
+/home/andre/Documentos/UDESC/MFO0001/class/redepetri.cpp
+redepetri.h
+/home/andre/Documentos/UDESC/MFO0001/class/redepetri.h
+
+/home/andre/Documentos/UDESC/MFO0001/class/redepetri.h
+threads/sema.h
+/home/andre/Documentos/UDESC/MFO0001/class/threads/sema.h
+threads/thread.h
+/home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
+threads/task.h
+/home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
+mapatrem.h
+/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
+linep.h
+/home/andre/Documentos/UDESC/MFO0001/class/linep.h
+string
+-
+opencv2/opencv.hpp
+-
+draw.h
+/home/andre/Documentos/UDESC/MFO0001/class/draw.h
+path.h
+/home/andre/Documentos/UDESC/MFO0001/class/path.h
+vector
+-
+queue
+-
+
 /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.cpp
 sema.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.h
@@ -185,6 +213,8 @@ string
 -
 class/threadtest.h
 /home/andre/Documentos/UDESC/MFO0001/class/threadtest.h
+class/redepetri.h
+/home/andre/Documentos/UDESC/MFO0001/class/redepetri.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

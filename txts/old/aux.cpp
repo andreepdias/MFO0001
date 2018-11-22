@@ -20,7 +20,6 @@ void printLugares(vector<string> &v){
 }
 
 void trocarTransicao(vector<string> &v, int a, int b){
-
     string aux = v[a];
 
     v[a] = v[b];
