@@ -18,8 +18,7 @@
 
 #include "mapatrem.h"
 
-MapaTrem::MapaTrem()
-{
+MapaTrem::MapaTrem(PoolTransicoes *_pool){
     Path *trajeto;
     
     fundoG1 = imread("img/mapa1.png", CV_LOAD_IMAGE_COLOR);   // Read the file
@@ -50,12 +49,13 @@ MapaTrem::MapaTrem()
     trajeto->AddPoint(Point3f(25, 326, 0));
     trajetos.push_back(trajeto);
       
+    pool = _pool;
+
     thread = new Thread();
     thread->Event((Task *) this);
 }
 
-MapaTrem::~MapaTrem()
-{    
+MapaTrem::~MapaTrem(){    
     for(Path *traj: trajetos)
         delete traj;
     
@@ -63,8 +63,7 @@ MapaTrem::~MapaTrem()
         delete thread;
 }
 
-void MapaTrem::DistTrajetos()
-{
+void MapaTrem::DistTrajetos(){
     cout << " T0 " << endl;
     trajetos[0]->DispPath();
      
@@ -76,8 +75,7 @@ void MapaTrem::DistTrajetos()
 }
 
 
-int MapaTrem::Gate()
-{
+int MapaTrem::Gate(){
     int g;
     sMapa.Lock();
     g = gate;
@@ -86,13 +84,12 @@ int MapaTrem::Gate()
     return g;
 }
 
-bool MapaTrem::Gate(int position)
-{
+bool MapaTrem::Gate(int position){
     if(position > 1 || position < 0)
         return false;
     
     sMapa.Lock();
-    gate=position;
+    gate = position;
     sMapa.Unlock();
     
     return true;
@@ -152,30 +149,76 @@ bool MapaTrem::Sensores(Point3f p1, Point3f p2, bool& a1, bool& a2, bool& b1, bo
 {
     Point3f pa1(67, 158, 0), pb1(180, 158, 0), pa2(67, 326, 0), pb2(180, 326, 0), pc(435, 242, 0);
     
-    if(linep::Distance(p1, pa1) < 5 || linep::Distance(p2, pa1) < 5)
+    if(linep::Distance(p1, pa1) < 5 || linep::Distance(p2, pa1) < 5){
+        if(a1 == false){
+            (*pool).addTransicao(27);
+        }        
         a1 = true;
-    else
+    }
+    else{
+        if(a1 == true){
+            (*pool).addTransicao(29);
+        }
         a1 = false;
+    }
     
-    if(linep::Distance(p1, pa2) < 5 || linep::Distance(p2, pa2) < 5)
+    if(linep::Distance(p1, pa2) < 5 || linep::Distance(p2, pa2) < 5){
+        if (a2 == false)
+        {
+            (*pool).addTransicao(28);
+        }
         a2 = true;
+    }
     else
+    {
+        if (a2 == true)
+        {
+            (*pool).addTransicao(30);
+        }
         a2 = false;
-    
-    if(linep::Distance(p1, pb1) < 5 || linep::Distance(p2, pb1) < 5)
+    }
+
+    if(linep::Distance(p1, pb1) < 5 || linep::Distance(p2, pb1) < 5){
+        if (b1 == false)
+        {
+            (*pool).addTransicao(17);
+        }
         b1 = true;
+    }
     else
+    {
+        if (b1 == true)
+        {
+            (*pool).addTransicao(22);
+        }
         b1 = false;
-    
-    if(linep::Distance(p1, pb2) < 5 || linep::Distance(p2, pb2) < 5)
+    }
+
+    if(linep::Distance(p1, pb2) < 5 || linep::Distance(p2, pb2) < 5){
+        if (b2 == false)
+        {
+            (*pool).addTransicao(18);
+        }
         b2 = true;
+    }
     else
+    {
+        if (b2 == true)
+        {
+            (*pool).addTransicao(23);
+        }
         b2 = false;
-    
-    if(linep::Distance(p1, pc) < 5 || linep::Distance(p2, pc) < 5)
+    }
+
+    if(linep::Distance(p1, pc) < 5 || linep::Distance(p2, pc) < 5){
+        if(c == false){
+            (*pool).addTransicao(19);
+        }
         c = true;
-    else
+    }
+    else{
         c = false;
+    }
     
     return true;
 }

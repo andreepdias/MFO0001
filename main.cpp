@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     return 0;
     
 
-    MapaTrem trens;
+    MapaTrem trens(&pool);
 
 
     trens.Trem1Pos(1, 1);

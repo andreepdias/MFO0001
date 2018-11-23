@@ -232,6 +232,7 @@ void RedePetri::executarTransicao(int t){
     for(int i = 0; i < n_lugares; i++){
         marcacoes[i] -= pre[i][t];
         marcacoes[i] += pos[i][t];
+        marcacoes[i] = max(0, min(1, marcacoes[i]));
     }
     cout << endl;
 }

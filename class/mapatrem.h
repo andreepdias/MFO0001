@@ -27,6 +27,7 @@
 #include "draw.h"
 #include "path.h"
 #include <vector>
+#include "pooltransicoes.h"
 
 using namespace std;
 using namespace cv;
@@ -36,6 +37,7 @@ class MapaTrem : public Task
 protected:
     sema sMapa;
     Thread *thread = NULL;
+    PoolTransicoes *pool = NULL;
     vector<Path *> trajetos;
     
     Mat fundoG0;
@@ -65,7 +67,7 @@ protected:
     //bool Trem1Pos(int x, int y);
     //bool Trem2Pos(int x, int y);
 public:
-    MapaTrem();
+    MapaTrem(PoolTransicoes *_pool);
     ~MapaTrem();
     int Width();
     int Height();
