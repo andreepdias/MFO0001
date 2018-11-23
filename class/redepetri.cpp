@@ -19,7 +19,7 @@
 #include "redepetri.h"
 
 
-RedePetri::RedePetri()
+RedePetri::RedePetri(PoolTransicoes *_pool)
 {
     ifstream arq("../txts/matriz_dimensoes.txt");
     arq >> n_lugares;
@@ -30,6 +30,8 @@ RedePetri::RedePetri()
     carregarVetorMarcacoes();
     carregarTransicoes();
     carregarLugares();
+
+    pool = _pool;
 
     thread = new Thread();
     thread->Event((Task *) this);
@@ -210,7 +212,7 @@ vi RedePetri::transicoesHabilitadas(){
     vi t_habilitadas;
     bool valido;
 
-    for(int i = 0; i < n_transicoes; i++){
+    for(int i = 0; i < 16; i++){
         valido = true;
         for(int j = 0; j < n_lugares; j++){
             if(marcacoes[j] - pre[j][i] < 0){
@@ -240,24 +242,25 @@ bool RedePetri::Exec()
     printNomeTransicoes();
     printNomeLugares();
 
-    printTransicaoPre(0);
-    printTransicaoPos(0);
+    int qtd, t, r, size;
+    vi t_h;
 
-    cout << endl;
-
-    vi t;
-    int c;
     while(1){
-        printMarcacoes();
-        t = transicoesHabilitadas();
-        printTransicoesHabilitadas(t);
-        // printVetorMarcacoes();
+        qtd = (*pool).sizePool();
 
-        cout << "Escolha uma transicao:\t";
-        cin >> c;
+        for(int i = 0; i < qtd; i++){
+            t = (*pool).popTransicao();
+            executarTransicao(t);
+        }
 
-        executarTransicao(c);
+        t_h = transicoesHabilitadas();
+        size = t_h.size();
 
+        if(size > 0){
+            r = rand() % size;
+            executarTransicao(t_h[r]);
+        }
+        Thread::SleepMS(5);
     }
     return true;
 }

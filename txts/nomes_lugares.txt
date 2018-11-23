@@ -21,3 +21,5 @@ T2_Parado_Gate_[S]
 T2_Parado_Sarnem_[S]
 Timer_Executando
 Timer_Terminado
+Sensor_A1_Ativado
+Sensor_A2_Ativado

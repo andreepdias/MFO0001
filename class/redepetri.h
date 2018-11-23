@@ -4,6 +4,7 @@
 #include "threads/thread.h"
 #include "threads/task.h"
 #include "mapatrem.h"
+#include "pooltransicoes.h"
 #include "linep.h"
 #include <string>
 #include <opencv2/opencv.hpp>
@@ -24,7 +25,7 @@ class RedePetri : public Task
 {
 protected:
     Thread *thread = NULL;
-    MapaTrem *mapa = NULL;
+    PoolTransicoes *pool = NULL;
 
     vvi pre;
     vvi pos;
@@ -34,11 +35,9 @@ protected:
     vs nome_lugares;
 
     int n_lugares, n_transicoes;
-
-    queue<int> pool_transicoes;
     
 public:
-    RedePetri();
+    RedePetri(PoolTransicoes *_pool);
     ~RedePetri();
 
     void carregarMatrizPre();

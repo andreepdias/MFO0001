@@ -25,3 +25,7 @@ Desativar_B2
 Desativar_C
 Desativar_M1
 Desativar_M2
+Acionar_A1
+Acionar_A2
+Desativar_A1
+Desativar_A2

@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/trem.dir/class/threadtest.cpp.o"
   "CMakeFiles/trem.dir/class/trem.cpp.o"
   "CMakeFiles/trem.dir/class/redepetri.cpp.o"
+  "CMakeFiles/trem.dir/class/pooltransicoes.cpp.o"
   "trem.pdb"
   "trem"
 )

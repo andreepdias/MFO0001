@@ -277,6 +277,33 @@ class/path.cpp.s:
 	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/path.cpp.s
 .PHONY : class/path.cpp.s
 
+class/pooltransicoes.o: class/pooltransicoes.cpp.o
+
+.PHONY : class/pooltransicoes.o
+
+# target to build an object file
+class/pooltransicoes.cpp.o:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/pooltransicoes.cpp.o
+.PHONY : class/pooltransicoes.cpp.o
+
+class/pooltransicoes.i: class/pooltransicoes.cpp.i
+
+.PHONY : class/pooltransicoes.i
+
+# target to preprocess a source file
+class/pooltransicoes.cpp.i:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/pooltransicoes.cpp.i
+.PHONY : class/pooltransicoes.cpp.i
+
+class/pooltransicoes.s: class/pooltransicoes.cpp.s
+
+.PHONY : class/pooltransicoes.s
+
+# target to generate assembly for a file
+class/pooltransicoes.cpp.s:
+	$(MAKE) -f CMakeFiles/trem.dir/build.make CMakeFiles/trem.dir/class/pooltransicoes.cpp.s
+.PHONY : class/pooltransicoes.cpp.s
+
 class/redepetri.o: class/redepetri.cpp.o
 
 .PHONY : class/redepetri.o
@@ -518,6 +545,9 @@ help:
 	@echo "... class/path.o"
 	@echo "... class/path.i"
 	@echo "... class/path.s"
+	@echo "... class/pooltransicoes.o"
+	@echo "... class/pooltransicoes.i"
+	@echo "... class/pooltransicoes.s"
 	@echo "... class/redepetri.o"
 	@echo "... class/redepetri.i"
 	@echo "... class/redepetri.s"

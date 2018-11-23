@@ -6,6 +6,7 @@
 #include <string>
 #include "class/threadtest.h"
 #include "class/redepetri.h"
+#include "class/pooltransicoes.h"
 
 using namespace std;
 
@@ -13,33 +14,18 @@ using namespace std;
 int main(int argc, char **argv) {
     /*
     ThreadTest teste(4);
-    
     Thread::SleepMS(10000);
-    111
-    return 0;
     */
 
-    RedePetri rede;
-    // rede.printMarcacoes();
-    // rede.printMatrizPre();
-    // rede.printMatrizPos();
-    // rede.printNomeLugares();
-    // rede.printNomeTransicoes();
+    PoolTransicoes pool;
+    RedePetri rede(&pool);
 
-    // vi t;
-
-    // do{
-    //     t = rede.transicoesHabilitadas();
-    //     rede.printTransicoesHabilitadas(t);
-
-    //     rede.executarTransicao(t[0]);
-
-    //     Thread::SleepMS(1000);
-
-    // }while((int)t.size() > 0);
+    int t;
 
     while(1){
-        Thread::SleepMS(100000);
+        cout << "Digite uma transicao.\n";
+        cin >> t;
+        pool.addTransicao(t);
     }
 
     return 0;
