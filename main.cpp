@@ -26,17 +26,21 @@ int main(int argc, char **argv) {
     // rede.printNomeLugares();
     // rede.printNomeTransicoes();
 
-    vi t;
+    // vi t;
 
-    do{
-        t = rede.transicoesHabilitadas();
-        rede.printTransicoesHabilitadas(t);
+    // do{
+    //     t = rede.transicoesHabilitadas();
+    //     rede.printTransicoesHabilitadas(t);
 
-        rede.executarTransicao(t[0]);
+    //     rede.executarTransicao(t[0]);
 
-        Thread::SleepMS(1000);
+    //     Thread::SleepMS(1000);
 
-    }while((int)t.size() > 0);
+    // }while((int)t.size() > 0);
+
+    while(1){
+        Thread::SleepMS(100000);
+    }
 
     return 0;
     

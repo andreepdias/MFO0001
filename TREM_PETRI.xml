@@ -851,12 +851,12 @@
                 <value>1</value>
             </priority>
         </transition>
-        <transition id="Mover_T1_Sarnem_[L]">
+        <transition id="Mover_T1_Lucerne_[L]">
             <graphics>
                 <position x="225.0" y="675.0"/>
             </graphics>
             <name>
-                <value>Mover_T1_Sarnem_[L]</value>
+                <value>Mover_T1_Lucerne_[L]</value>
                 <graphics>
                     <offset x="73.0" y="28.0"/>
                 </graphics>
@@ -1085,12 +1085,12 @@
                 <value>1</value>
             </priority>
         </transition>
-        <transition id="T1_Parar_Sarnem_[S]">
+        <transition id="T1_Parar_Lucerne_[S]">
             <graphics>
                 <position x="465.0" y="765.0"/>
             </graphics>
             <name>
-                <value>T1_Parar_Sarnem_[S]</value>
+                <value>T1_Parar_Lucerne_[S]</value>
                 <graphics>
                     <offset x="63.0" y="44.0"/>
                 </graphics>
@@ -1332,7 +1332,7 @@
             <arcpath id="001" x="325" y="176" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="Mover_T1_Sarnem_[L] to Mutex_Livre" source="Mover_T1_Sarnem_[L]" target="S.C._Livre">
+        <arc id="Mover_T1_Sarnem_[L] to Mutex_Livre" source="Mover_T1_Lucerne_[L]" target="S.C._Livre">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1345,7 +1345,7 @@
             <arcpath id="001" x="690" y="246" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="Mover_T1_Sarnem_[L] to T1_Movimentando_Lucerne_[L]" source="Mover_T1_Sarnem_[L]" target="T1_Movimentando_Lucerne_[L]">
+        <arc id="Mover_T1_Sarnem_[L] to T1_Movimentando_Lucerne_[L]" source="Mover_T1_Lucerne_[L]" target="T1_Movimentando_Lucerne_[L]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1488,7 +1488,7 @@
             <arcpath id="001" x="325" y="281" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="Mutex_Ocupado to Mover_T1_Sarnem_[L]" source="S.C._Ocupada" target="Mover_T1_Sarnem_[L]">
+        <arc id="Mutex_Ocupado to Mover_T1_Sarnem_[L]" source="S.C._Ocupada" target="Mover_T1_Lucerne_[L]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1772,12 +1772,12 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="206" y="415" curvePoint="false"/>
+            <arcpath id="000" x="206" y="416" curvePoint="false"/>
             <arcpath id="001" x="206" y="416" curvePoint="false"/>
             <arcpath id="002" x="205" y="455" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="T1_Movimentando_Gate_[L] to Mover_T1_Sarnem_[L]" source="T1_Movimentando_Gate_[L]" target="Mover_T1_Sarnem_[L]">
+        <arc id="T1_Movimentando_Gate_[L] to Mover_T1_Sarnem_[L]" source="T1_Movimentando_Gate_[L]" target="Mover_T1_Lucerne_[L]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1786,7 +1786,7 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="220" y="626" curvePoint="false"/>
+            <arcpath id="000" x="221" y="626" curvePoint="false"/>
             <arcpath id="001" x="221" y="626" curvePoint="false"/>
             <arcpath id="002" x="227" y="680" curvePoint="false"/>
             <type value="normal"/>
@@ -1817,7 +1817,7 @@
             <arcpath id="001" x="310" y="275" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="T1_Movimentando_Lucerne_[L] to T1_Parar_Sarnem_[S]" source="T1_Movimentando_Lucerne_[L]" target="T1_Parar_Sarnem_[S]">
+        <arc id="T1_Movimentando_Lucerne_[L] to T1_Parar_Sarnem_[S]" source="T1_Movimentando_Lucerne_[L]" target="T1_Parar_Lucerne_[S]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1852,7 +1852,7 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="216" y="291" curvePoint="false"/>
+            <arcpath id="000" x="206" y="296" curvePoint="false"/>
             <arcpath id="001" x="206" y="281" curvePoint="false"/>
             <arcpath id="002" x="205" y="335" curvePoint="false"/>
             <type value="normal"/>
@@ -1870,7 +1870,7 @@
             <arcpath id="001" x="390" y="181" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="T1_Parar_Sarnem_[S] to T1_Parado_Lucerne_[S]" source="T1_Parar_Sarnem_[S]" target="T1_Parado_Lucerne_[S]">
+        <arc id="T1_Parar_Sarnem_[S] to T1_Parado_Lucerne_[S]" source="T1_Parar_Lucerne_[S]" target="T1_Parado_Lucerne_[S]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -1934,7 +1934,7 @@
             </tagged>
             <arcpath id="000" x="310" y="285" curvePoint="false"/>
             <arcpath id="001" x="311" y="401" curvePoint="false"/>
-            <arcpath id="002" x="220" y="401" curvePoint="false"/>
+            <arcpath id="002" x="221" y="401" curvePoint="false"/>
             <type value="normal"/>
         </arc>
         <arc id="T2_Movimentando_Eng_[R] to Parar_T2_Eng_[S]" source="T2_Movimentando_Eng_[R]" target="Parar_T2_Eng_[S]">
@@ -2011,7 +2011,7 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="1106" y="565" curvePoint="false"/>
+            <arcpath id="000" x="1106" y="566" curvePoint="false"/>
             <arcpath id="001" x="1106" y="566" curvePoint="false"/>
             <arcpath id="002" x="1105" y="605" curvePoint="false"/>
             <type value="normal"/>
@@ -2081,7 +2081,7 @@
             <arcpath id="001" x="685" y="725" curvePoint="false"/>
             <type value="normal"/>
         </arc>
-        <arc id="Timer_Terminado to Mover_T1_Sarnem_[L]" source="Timer_Terminado" target="Mover_T1_Sarnem_[L]">
+        <arc id="Timer_Terminado to Mover_T1_Gate_[L]" source="Timer_Terminado" target="Mover_T1_Gate_[L]">
             <graphics/>
             <inscription>
                 <value>Default,1</value>
@@ -2090,8 +2090,8 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="671" y="801" curvePoint="false"/>
-            <arcpath id="001" x="250" y="686" curvePoint="false"/>
+            <arcpath id="000" x="672" y="798" curvePoint="false"/>
+            <arcpath id="001" x="220" y="566" curvePoint="false"/>
             <type value="normal"/>
         </arc>
         <arc id="Timer_Terminado to Mover_T2_Gate_[L]" source="Timer_Terminado" target="Mover_T2_Gate_[L]">

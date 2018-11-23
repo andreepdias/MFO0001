@@ -53,6 +53,9 @@ public:
     void printNomeLugares();
     void printNomeTransicoes();
     void printTransicoesHabilitadas(vi &t);
+    void printVetorMarcacoes();
+    void printTransicaoPre(int k);
+    void printTransicaoPos(int k);
 
     vi transicoesHabilitadas();
     void executarTransicao(int t);

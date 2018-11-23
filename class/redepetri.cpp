@@ -21,7 +21,7 @@
 
 RedePetri::RedePetri()
 {
-    ifstream arq("../txts/teste/matriz_dimensoes.txt");
+    ifstream arq("../txts/matriz_dimensoes.txt");
     arq >> n_lugares;
     arq >> n_transicoes;
 
@@ -31,8 +31,8 @@ RedePetri::RedePetri()
     carregarTransicoes();
     carregarLugares();
 
-    // thread = new Thread();
-    // thread->Event((Task *) this);
+    thread = new Thread();
+    thread->Event((Task *) this);
 }
 
 RedePetri::~RedePetri()
@@ -43,7 +43,7 @@ RedePetri::~RedePetri()
 
 void RedePetri::carregarMatrizPre(){
 
-    ifstream arq("../txts/teste/matriz_pre.txt");
+    ifstream arq("../txts/matriz_pre.txt");
     int x;
 
     for(int i = 0; i < n_lugares; i++){
@@ -59,7 +59,7 @@ void RedePetri::carregarMatrizPre(){
 
 void RedePetri::carregarMatrizPos(){
 
-    ifstream arq("../txts/teste/matriz_pos.txt");
+    ifstream arq("../txts/matriz_pos.txt");
     int x;
 
     for(int i = 0; i < n_lugares; i++){
@@ -75,7 +75,7 @@ void RedePetri::carregarMatrizPos(){
 
 void RedePetri::carregarVetorMarcacoes(){
 
-    ifstream arq("../txts/teste/vetor_marcacoes.txt");
+    ifstream arq("../txts/vetor_marcacoes.txt");
     int x;
 
     for(int i = 0; i < n_lugares; i++){
@@ -86,7 +86,7 @@ void RedePetri::carregarVetorMarcacoes(){
 
 void RedePetri::carregarTransicoes(){
 
-    ifstream arq("../txts/teste/nomes_transicoes.txt");
+    ifstream arq("../txts/nomes_transicoes.txt");
     string s;
 
     for(int i = 0; i < n_transicoes; i++){
@@ -96,7 +96,7 @@ void RedePetri::carregarTransicoes(){
 }
 
 void RedePetri::carregarLugares(){
-    ifstream arq("../txts/teste/nomes_lugares.txt");
+    ifstream arq("../txts/nomes_lugares.txt");
     string s;
 
     for(int i = 0; i < n_lugares; i++){
@@ -124,10 +124,11 @@ void RedePetri::printMatrizPos(){
 }
 
 void RedePetri::printMarcacoes(){
-    for(int i = 0; i < n_lugares; i++){
-        cout << marcacoes[i] << " ";
-    }
-    cout << endl;
+    cout << "Marcacoes Habilitadas:" << endl;
+    // for(int i = 0; i < n_lugares; i++){
+    //     cout << marcacoes[i] << " ";
+    // }
+    // cout << endl;
 
     for(int i = 0; i < n_lugares; i++){
         if(marcacoes[i] >= 1){
@@ -136,23 +137,70 @@ void RedePetri::printMarcacoes(){
             cout << "***Marcacao negativa***" << endl;
         }
     }
+    cout << endl;
 }
 
 void RedePetri::printNomeLugares(){
-    for(int i = 0; i < n_lugares; i++){
+    cout << "Nome e ID dos Lugares:" << endl;
+    for (int i = 0; i < n_lugares; i++)
+    {
+        printf("%2d: ", i);
         cout << nome_lugares[i] << endl;
     }
+    cout << endl;
+}
+
+void RedePetri::printVetorMarcacoes(){
+    for(int i = 0; i < n_lugares; i++){
+        cout << marcacoes[i] << " ";
+    }
+    cout << endl;
+}
+
+void RedePetri::printTransicaoPre(int k){
+    cout << "Pre Transicao " << k << ":" << endl;
+    for(int i = 0; i < n_lugares; i++){
+        cout << pre[i][k] << " ";
+    }
+    cout << endl;
+    for(int i = 0; i < n_lugares; i++){
+        if(pre[i][k] >= 1){
+            printf("%2d: ", i);
+            cout << nome_lugares[i] << endl;
+        }
+    }
+    cout << endl;
+}
+
+void RedePetri::printTransicaoPos(int k){
+    cout << "Pos Transicao " << k << ":" << endl;
+    for (int i = 0; i < n_lugares; i++)
+    {
+        cout << pos[i][k] << " ";
+    }
+    cout << endl;
+    for(int i = 0; i < n_lugares; i++){
+        if(pos[i][k] >= 1){
+            printf("%2d: ", i);
+            cout << nome_lugares[i] << endl;
+        }
+    }
+    cout << endl;
 }
 
 void RedePetri::printNomeTransicoes(){
+    cout << "Nome e ID das Transicoes:" << endl;
     for(int i = 0; i < n_transicoes; i++){
+        printf("%2d: ", i);
         cout << nome_transicoes[i] << endl;
     }
+    cout << endl;
 }
 
 void RedePetri::printTransicoesHabilitadas(vi &t){
     cout << "Transicoes Habilitadas:" << endl;
     for(int i = 0; i < (int)t.size(); i++){
+        printf("%2d: ", t[i]);
         cout << nome_transicoes[t[i]] << endl;
     }
     cout << endl;
@@ -189,6 +237,28 @@ void RedePetri::executarTransicao(int t){
 // Task
 bool RedePetri::Exec()
 {
+    printNomeTransicoes();
+    printNomeLugares();
+
+    printTransicaoPre(0);
+    printTransicaoPos(0);
+
+    cout << endl;
+
+    vi t;
+    int c;
+    while(1){
+        printMarcacoes();
+        t = transicoesHabilitadas();
+        printTransicoesHabilitadas(t);
+        // printVetorMarcacoes();
+
+        cout << "Escolha uma transicao:\t";
+        cin >> c;
+
+        executarTransicao(c);
+
+    }
     return true;
 }
 
