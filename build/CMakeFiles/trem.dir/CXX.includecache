@@ -47,6 +47,8 @@ path.h
 /home/andre/Documentos/UDESC/MFO0001/class/path.h
 vector
 -
+pooltransicoes.h
+/home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
 
 /home/andre/Documentos/UDESC/MFO0001/class/path.cpp
 path.h
@@ -69,8 +71,6 @@ threads/thread.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
 threads/task.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
-mapatrem.h
-/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
 linep.h
 /home/andre/Documentos/UDESC/MFO0001/class/linep.h
 string
@@ -97,10 +97,6 @@ threads/thread.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
 threads/task.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
-mapatrem.h
-/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
-pooltransicoes.h
-/home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
 linep.h
 /home/andre/Documentos/UDESC/MFO0001/class/linep.h
 string
@@ -115,6 +111,12 @@ vector
 -
 queue
 -
+mapatrem.h
+/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
+pooltransicoes.h
+/home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
+trem.h
+/home/andre/Documentos/UDESC/MFO0001/class/trem.h
 
 /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.cpp
 sema.h
@@ -213,8 +215,6 @@ threads/thread.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
 threads/task.h
 /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
-mapatrem.h
-/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
 linep.h
 /home/andre/Documentos/UDESC/MFO0001/class/linep.h
 string
@@ -227,6 +227,8 @@ path.h
 /home/andre/Documentos/UDESC/MFO0001/class/path.h
 vector
 -
+mapatrem.h
+/home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
 
 /home/andre/Documentos/UDESC/MFO0001/main.cpp
 iostream

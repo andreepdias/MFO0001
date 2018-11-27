@@ -21,13 +21,13 @@
 #include "threads/sema.h"
 #include "threads/thread.h"
 #include "threads/task.h"
-#include "mapatrem.h"
 #include "linep.h"
 #include <string>
 #include <opencv2/opencv.hpp>
 #include "draw.h"
 #include "path.h"
 #include <vector>
+#include "mapatrem.h"
 
 using namespace std;
 using namespace cv;
@@ -38,6 +38,13 @@ protected:
     Thread *thread = NULL;
     int id;
     int estado;
+
+    float pos;
+    float traj;
+
+    sema sema_est;
+    sema sema_traj;
+
     MapaTrem *mapa = NULL;
     
 public:
@@ -46,8 +53,27 @@ public:
     int getId();
     void setId();
     int getEstado();
-    void setEstado();
-    
+    void setEstado(int e);
+    int getTrajeto();
+    void setTrajeto(int t);
+
+    void operarT1();
+    void operarT2();
+
+    void pararT1();
+    void pararT1_Gate();
+    void pararT1_Eng();
+    void pararT1_Luc();
+    void moverT1_R();
+    void moverT1_L();
+
+    void pararT2();
+    void pararT2_Gate();
+    void pararT2_Eng();
+    void pararT2_Sar();
+    void moverT2_R();
+    void moverT2_L();
+
     // Task
     virtual bool Exec();
 };

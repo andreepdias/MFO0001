@@ -270,6 +270,7 @@ CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/linep.h
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/mapatrem.cpp
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/mapatrem.h
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/path.h
+CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/pooltransicoes.h
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/threads/sema.h
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/threads/task.h
 CMakeFiles/trem.dir/class/mapatrem.cpp.o: ../class/threads/thread.h
@@ -538,7 +539,6 @@ CMakeFiles/trem.dir/class/path.cpp.o: /usr/local/include/opencv2/xfeatures2d/cud
 
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/draw.h
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/linep.h
-CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/mapatrem.h
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/path.h
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/pooltransicoes.cpp
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o: ../class/pooltransicoes.h
@@ -685,6 +685,7 @@ CMakeFiles/trem.dir/class/redepetri.cpp.o: ../class/redepetri.h
 CMakeFiles/trem.dir/class/redepetri.cpp.o: ../class/threads/sema.h
 CMakeFiles/trem.dir/class/redepetri.cpp.o: ../class/threads/task.h
 CMakeFiles/trem.dir/class/redepetri.cpp.o: ../class/threads/thread.h
+CMakeFiles/trem.dir/class/redepetri.cpp.o: ../class/trem.h
 CMakeFiles/trem.dir/class/redepetri.cpp.o: /usr/local/include/opencv/cxcore.h
 CMakeFiles/trem.dir/class/redepetri.cpp.o: /usr/local/include/opencv2/calib3d.hpp
 CMakeFiles/trem.dir/class/redepetri.cpp.o: /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -845,6 +846,7 @@ CMakeFiles/trem.dir/class/trem.cpp.o: ../class/draw.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/linep.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/mapatrem.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/path.h
+CMakeFiles/trem.dir/class/trem.cpp.o: ../class/pooltransicoes.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/threads/sema.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/threads/task.h
 CMakeFiles/trem.dir/class/trem.cpp.o: ../class/threads/thread.h

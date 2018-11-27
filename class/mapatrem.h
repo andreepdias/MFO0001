@@ -63,7 +63,7 @@ protected:
     
     bool imgAdd(Mat &fundo, Mat &add, int x, int y, Vec3b transpColor);
     
-    bool Sensores(Point3f p1, Point3f p2, bool &a1, bool &a2, bool &b1, bool &b2, bool &c);
+    bool Sensores(Point3f p1, Point3f p2, bool &a1, bool &a2, bool &b1, bool &b2, bool &c, int id);
     //bool Trem1Pos(int x, int y);
     //bool Trem2Pos(int x, int y);
 public:

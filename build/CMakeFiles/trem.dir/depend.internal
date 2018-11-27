@@ -271,6 +271,7 @@ CMakeFiles/trem.dir/class/mapatrem.cpp.o
  /home/andre/Documentos/UDESC/MFO0001/class/mapatrem.cpp
  /home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
  /home/andre/Documentos/UDESC/MFO0001/class/path.h
+ /home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
@@ -539,7 +540,6 @@ CMakeFiles/trem.dir/class/path.cpp.o
 CMakeFiles/trem.dir/class/pooltransicoes.cpp.o
  /home/andre/Documentos/UDESC/MFO0001/class/draw.h
  /home/andre/Documentos/UDESC/MFO0001/class/linep.h
- /home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
  /home/andre/Documentos/UDESC/MFO0001/class/path.h
  /home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.cpp
  /home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
@@ -686,6 +686,7 @@ CMakeFiles/trem.dir/class/redepetri.cpp.o
  /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h
+ /home/andre/Documentos/UDESC/MFO0001/class/trem.h
  /usr/local/include/opencv/cxcore.h
  /usr/local/include/opencv2/calib3d.hpp
  /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -846,6 +847,7 @@ CMakeFiles/trem.dir/class/trem.cpp.o
  /home/andre/Documentos/UDESC/MFO0001/class/linep.h
  /home/andre/Documentos/UDESC/MFO0001/class/mapatrem.h
  /home/andre/Documentos/UDESC/MFO0001/class/path.h
+ /home/andre/Documentos/UDESC/MFO0001/class/pooltransicoes.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/sema.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/task.h
  /home/andre/Documentos/UDESC/MFO0001/class/threads/thread.h

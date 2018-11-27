@@ -24,6 +24,10 @@ Trem::Trem(int _id, MapaTrem *_mapa)
     id = _id;
     estado = 0;      
     mapa = _mapa;
+
+    pos = 1.0;
+    traj = id;
+
     thread = new Thread();
     thread->Event((Task *) this);
 }
@@ -34,6 +38,270 @@ Trem::~Trem()
         delete thread;
 }
 
+int Trem::getEstado(){
+    int i;
+    sema_est.Lock();
+    i = estado;
+    sema_est.Unlock();
+    return i;
+}
+
+void Trem::setEstado(int e){
+    sema_est.Lock();
+    estado = e;
+    sema_est.Unlock();
+}
+
+int Trem::getTrajeto()
+{
+    int i;
+    sema_traj.Lock();
+    i = traj;
+    sema_traj.Unlock();
+    return i;
+}
+
+void Trem::setTrajeto(int t)
+{
+    sema_traj.Lock();
+    traj = t;
+    sema_traj.Unlock();
+}
+
+void Trem::pararT1(){
+    while(true){
+        if(getEstado() != 0)
+            break;
+
+        (*mapa).Trem1Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::pararT1_Gate(){
+    while (true)
+    {
+        if (getEstado() != 4)
+            break;
+
+        if(pos >= 0.15){
+            pos -= 0.005;
+            (*mapa).Trem1Pos(pos, 1);
+        }
+
+        (*mapa).Trem1Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::pararT1_Eng()
+{
+    while (true)
+    {
+        if (getEstado() != 5)
+            break;
+
+        if (pos < 1)
+        {
+            pos += 0.005;
+            (*mapa).Trem1Pos(pos, 0);
+        }
+
+        (*mapa).Trem1Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::pararT2_Eng()
+{
+    while (true)
+    {
+        if (getEstado() != 5)
+            break;
+
+        if (pos < 1)
+        {
+            pos += 0.005;
+            (*mapa).Trem2Pos(pos, 0);
+        }
+
+        (*mapa).Trem2Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::pararT2_Gate()
+{
+    while (true)
+    {
+        if (getEstado() != 4)
+            break;
+
+        if (pos >= 0.15)
+        {
+            pos -= 0.005;
+            (*mapa).Trem2Pos(pos, 2);
+        }
+
+        (*mapa).Trem2Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+
+
+void Trem::moverT1_R(){
+    while(true){
+        if(getEstado() != 1)
+            break;
+
+        // cout << pos << endl;
+
+        int t = getTrajeto();
+        if(t == 1){
+            pos -= 0.005;
+            (*mapa).Trem1Pos(pos, t);
+            if(pos <= 0.0){
+                setTrajeto(0);
+            }
+        }else{
+            pos += 0.005;
+            (*mapa).Trem1Pos(pos, t);
+
+            if(pos >= 1)
+                setTrajeto(1);
+        }
+        (*mapa).Trem1Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::moverT1_L(){
+    while (true){
+        if(getEstado() != 2)
+            break;
+
+        // cout << pos << endl;
+
+        if (getTrajeto() == 1){
+            pos += 0.005;
+            (*mapa).Trem1Pos(pos, 1);
+
+            if(pos >= 1)
+                traj = 0;
+        }
+        else{
+            pos -= 0.005;
+            (*mapa).Trem1Pos(pos, 0);
+
+            if(pos <= 0)
+                traj = 1;
+        }
+        (*mapa).Trem1Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::pararT2(){
+    while(true){
+        if(getEstado() != 0)
+            break;
+
+        (*mapa).Trem2Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::moverT2_R(){
+    while (true){
+        if(getEstado() != 1)
+            break;
+
+        if (getTrajeto() == 2){
+            pos -= 0.005;
+            (*mapa).Trem2Pos(pos, 2);
+
+            if(pos <= 0)
+                traj = 0;
+        }
+        else{
+            pos += 0.005;
+            (*mapa).Trem2Pos(pos, 0);
+
+            if(pos >= 1)
+                traj = 2;
+        }
+        (*mapa).Trem2Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::moverT2_L(){
+    while (true){
+        if(getEstado() != 2)
+            break;
+
+        if (getTrajeto() == 2){
+            pos += 0.005;
+            (*mapa).Trem2Pos(pos, 2);
+
+            if(pos >= 1){
+                traj = 0;
+            }
+        }
+        else{
+            pos -= 0.005;
+            (*mapa).Trem2Pos(pos, 0);
+
+            if(pos <= 0)
+                traj = 2;
+        }
+        (*mapa).Trem2Txt("a1=" + to_string((int)(*mapa).A1()) + " a2=" + to_string((int)(*mapa).A2()) + " b1=" + to_string((int)(*mapa).B1()) + " b2=" + to_string((int)(*mapa).B2()) + " c=" + to_string((int)(*mapa).C()));
+        Thread::SleepMS(10);
+    }
+}
+
+void Trem::operarT1(){
+    switch(estado){
+        case 0:
+            pararT1();
+            break;
+        case 1:
+            moverT1_R();
+            break;
+        case 2:
+            moverT1_L();
+            break;
+        case 4:
+            pararT1_Gate();
+            break;
+        case 5:
+            pararT1_Eng();
+            break;
+    }
+}
+
+void Trem::operarT2(){
+    switch (estado){
+    case 0:
+        pararT2();
+        break;
+    case 1:
+        moverT2_R();
+        break;
+    case 2:
+        moverT2_L();
+        break;
+    case 4:
+        pararT2_Gate();
+        break;
+    case 5:
+        pararT2_Eng();
+        break;
+    
+    }
+}
+
 
 // Task
 bool Trem::Exec()
@@ -41,47 +309,9 @@ bool Trem::Exec()
     while(1)
     {
         if(id == 1){
-            for(float p = -1; p <= 1; p += 0.01)
-            {
-                if(p < 0)
-                    (*mapa).Trem1Pos((-1) * p, 1);
-                else
-                    (*mapa).Trem1Pos(p, 0);
-                //(*mapa).Trem1Pos(p.x,p.y);
-                Thread::SleepMS(10);
-                
-                (*mapa).Trem1Txt("a1=" + to_string((int) (*mapa).A1()) 
-                + " a2=" + to_string((int) (*mapa).A2()) 
-                + " b1=" + to_string((int) (*mapa).B1()) 
-                + " b2=" + to_string((int) (*mapa).B2()) 
-                + " c=" + to_string((int) (*mapa).C()));
-                
-                int key = (*mapa).GetLastKey();
-                cout << "LastKey = " << key << endl;
-                if(key == 27)
-                    return 1;
-            }
+            operarT1();
         }else if(id == 2){
-            for(float p = -1; p <= 1; p += 0.01)
-            {
-                if(p < 0)
-                    (*mapa).Trem2Pos((-1) * p, 2);
-                else
-                    (*mapa).Trem2Pos(p, 0);
-                //(*mapa).Trem2Pos(p.x,p.y);
-                Thread::SleepMS(10);
-                
-                (*mapa).Trem2Txt("a1=" + to_string((int) (*mapa).A1()) 
-                + " a2=" + to_string((int) (*mapa).A2()) 
-                + " b1=" + to_string((int) (*mapa).B1()) 
-                + " b2=" + to_string((int) (*mapa).B2()) 
-                + " c=" + to_string((int) (*mapa).C()));
-                
-                int key = (*mapa).GetLastKey();
-                cout << "LastKey = " << key << endl;
-                if(key == 27)
-                    return 1;
-            }
+            operarT2();
         }
     }
     

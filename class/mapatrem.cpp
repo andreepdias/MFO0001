@@ -51,6 +51,11 @@ MapaTrem::MapaTrem(PoolTransicoes *_pool){
       
     pool = _pool;
 
+    Trem1Pos(1, 1);
+    Trem1Txt("Mensagem trem 1.");
+    Trem2Pos(1, 2);
+    Trem2Txt("Mensagem trem 2.");
+
     thread = new Thread();
     thread->Event((Task *) this);
 }
@@ -145,70 +150,77 @@ bool MapaTrem::C()
     return r;
 }
 
-bool MapaTrem::Sensores(Point3f p1, Point3f p2, bool& a1, bool& a2, bool& b1, bool& b2, bool& c)
+bool MapaTrem::Sensores(Point3f p1, Point3f p2, bool& a1, bool& a2, bool& b1, bool& b2, bool& c, int id)
 {
     Point3f pa1(67, 158, 0), pb1(180, 158, 0), pa2(67, 326, 0), pb2(180, 326, 0), pc(435, 242, 0);
     
-    if(linep::Distance(p1, pa1) < 5 || linep::Distance(p2, pa1) < 5){
-        if(a1 == false){
-            (*pool).addTransicao(27);
-        }        
-        a1 = true;
-    }
-    else{
-        if(a1 == true){
-            (*pool).addTransicao(29);
+    if(id == 1){
+        if(linep::Distance(p1, pa1) < 5){
+            if(a1 == false){
+                (*pool).addTransicao(27);
+            }        
+            a1 = true;
         }
-        a1 = false;
+        else{
+            if (a1 == true)
+            {
+                (*pool).addTransicao(29);
+            }
+            a1 = false;
+        }
+        
+        if(linep::Distance(p1, pb1) < 5){
+            if (b1 == false)
+            {
+                (*pool).addTransicao(17);
+            }
+            b1 = true;
+        }
+        else
+        {
+            if (b1 == true)
+            {
+                (*pool).addTransicao(22);
+            }
+            b1 = false;
+        }
+        
+    }else if(id == 2){
+        if(linep::Distance(p1, pa2) < 5){
+            if (a2 == false)
+            {
+                (*pool).addTransicao(28);
+            }
+            a2 = true;
+        }
+        else
+        {
+            if (a2 == true)
+            {
+                (*pool).addTransicao(30);
+            }
+            a2 = false;
+        }
+        
+        if(linep::Distance(p1, pb2) < 5){
+            if (b2 == false)
+            {
+                (*pool).addTransicao(18);
+            }
+            b2 = true;
+        }
+        else
+        {
+            if (b2 == true)
+            {
+                (*pool).addTransicao(23);
+            }
+            b2 = false;
+        }
     }
     
-    if(linep::Distance(p1, pa2) < 5 || linep::Distance(p2, pa2) < 5){
-        if (a2 == false)
-        {
-            (*pool).addTransicao(28);
-        }
-        a2 = true;
-    }
-    else
-    {
-        if (a2 == true)
-        {
-            (*pool).addTransicao(30);
-        }
-        a2 = false;
-    }
 
-    if(linep::Distance(p1, pb1) < 5 || linep::Distance(p2, pb1) < 5){
-        if (b1 == false)
-        {
-            (*pool).addTransicao(17);
-        }
-        b1 = true;
-    }
-    else
-    {
-        if (b1 == true)
-        {
-            (*pool).addTransicao(22);
-        }
-        b1 = false;
-    }
 
-    if(linep::Distance(p1, pb2) < 5 || linep::Distance(p2, pb2) < 5){
-        if (b2 == false)
-        {
-            (*pool).addTransicao(18);
-        }
-        b2 = true;
-    }
-    else
-    {
-        if (b2 == true)
-        {
-            (*pool).addTransicao(23);
-        }
-        b2 = false;
-    }
 
     if(linep::Distance(p1, pc) < 5 || linep::Distance(p2, pc) < 5){
         if(c == false){
@@ -216,7 +228,12 @@ bool MapaTrem::Sensores(Point3f p1, Point3f p2, bool& a1, bool& a2, bool& b1, bo
         }
         c = true;
     }
-    else{
+    else if (linep::Distance(p1, pc) >= 5 && linep::Distance(p2, pc) >= 5)
+    {
+        if (c == true)
+        {
+            (*pool).addTransicao(24);
+        }
         c = false;
     }
     
@@ -277,7 +294,7 @@ bool MapaTrem::Trem1Pos(float param, int trajeto)
     t1traj = trajeto;
     
     pt2 = trajetos[t2p]->GetPoint(t2traj);
-    Sensores(pt, pt2, a1, a2, b1, b2, c);
+    Sensores(pt, pt2, a1, a2, b1, b2, c, 1);
     sMapa.Unlock();
     
     return true;
@@ -349,7 +366,7 @@ bool MapaTrem::Trem2Pos(float param, int trajeto)
     t2traj = trajeto;
     
     pt2 = trajetos[t1p]->GetPoint(t1traj);
-    Sensores(pt, pt2, a1, a2, b1, b2, c);
+    Sensores(pt, pt2, a1, a2, b1, b2, c, 2);
     sMapa.Unlock();
     
     return true;

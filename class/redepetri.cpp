@@ -19,7 +19,7 @@
 #include "redepetri.h"
 
 
-RedePetri::RedePetri(PoolTransicoes *_pool)
+RedePetri::RedePetri(PoolTransicoes *_pool, MapaTrem *_mapa, Trem *_trem1, Trem *_trem2)
 {
     ifstream arq("../txts/matriz_dimensoes.txt");
     arq >> n_lugares;
@@ -32,6 +32,9 @@ RedePetri::RedePetri(PoolTransicoes *_pool)
     carregarLugares();
 
     pool = _pool;
+    mapa = _mapa;
+    trem1 = _trem1;
+    trem2 = _trem2;
 
     thread = new Thread();
     thread->Event((Task *) this);
@@ -227,12 +230,136 @@ vi RedePetri::transicoesHabilitadas(){
     return t_habilitadas;
 }
 
+void RedePetri::T0_Parar_T1_Eng_S(){
+    (*trem1).setEstado(0);
+    Thread::SleepMS(3000);
+    (*pool).addTransicao(16);
+}
+
+void RedePetri::T1_Parar_T1_Gate_S(){
+    (*trem1).setEstado(4);
+}
+
+void RedePetri::T2_Parar_T2_Eng_S(){
+    (*trem2).setEstado(0);
+    Thread::SleepMS(3000);
+    (*pool).addTransicao(16);
+}
+
+void RedePetri::T3_Parar_T2_Gate_S(){
+    (*trem2).setEstado(4);
+}
+
+void RedePetri::T4_Continar_T1_Eng_R(){
+    (*trem1).setEstado(1);
+    (*mapa).Gate(1);
+}
+
+void RedePetri::T5_Continar_T2_Eng_R(){
+    (*trem2).setEstado(1);
+    (*mapa).Gate(0);
+}
+
+void RedePetri::T6_Parar_T1_Lucerne_S(){
+    (*trem1).setEstado(0);
+}
+
+void RedePetri::T7_Parar_T2_Sarnem_S(){
+    (*trem2).setEstado(0);
+}
+
+void RedePetri::T8_Mover_T1_Eng_R(){
+    (*trem1).setEstado(1);
+    (*mapa).Gate(1);
+}
+
+void RedePetri::T9_Mover_T1_Gate_L(){
+    (*trem1).setEstado(2);
+}
+
+void RedePetri::T10_Mover_T1_Gate_R(){
+    (*trem1).setEstado(1);
+}
+
+void RedePetri::T11_Mover_T1_Lucerne_L(){
+    (*trem1).setEstado(2);
+}
+
+void RedePetri::T12_Mover_T2_Eng_R(){
+    (*trem2).setEstado(1);
+    (*mapa).Gate(0);
+}
+
+void RedePetri::T13_Mover_T2_Gate_L(){
+    (*trem2).setEstado(2);
+}
+
+void RedePetri::T14_Mover_T2_Gate_R(){
+    (*trem2).setEstado(1);
+}
+
+void RedePetri::T15_Mover_T2_Sarnem_L(){
+    (*trem2).setEstado(2);
+}
+
+
 void RedePetri::executarTransicao(int t){
-    cout << "Executando Transicao " << nome_transicoes[t] << "." << endl;
+    cout << "Executando Transicao " << nome_transicoes[t] << "(" << t << ")." << endl;
     for(int i = 0; i < n_lugares; i++){
         marcacoes[i] -= pre[i][t];
         marcacoes[i] += pos[i][t];
         marcacoes[i] = max(0, min(1, marcacoes[i]));
+    }
+
+    switch(t){
+        case 0: 
+            T0_Parar_T1_Eng_S();
+            break;
+        case 1:
+            T1_Parar_T1_Gate_S();
+            break;
+        case 2:
+            T2_Parar_T2_Eng_S();
+            break;
+        case 3:
+            T3_Parar_T2_Gate_S();
+            break;
+        case 4:
+            T4_Continar_T1_Eng_R();
+            break;
+        case 5:
+            T5_Continar_T2_Eng_R();
+            break;
+        case 6:
+            T6_Parar_T1_Lucerne_S();
+            break;
+        case 7:
+            T7_Parar_T2_Sarnem_S();
+            break;
+        case 8:
+            T8_Mover_T1_Eng_R();
+            break;
+        case 9:
+            T9_Mover_T1_Gate_L();
+            break;
+        case 10:
+            T10_Mover_T1_Gate_R();
+            break;
+        case 11:
+            T11_Mover_T1_Lucerne_L();
+            break;
+        case 12:
+            T12_Mover_T2_Eng_R();
+            break;
+        case 13:
+            T13_Mover_T2_Gate_L();
+            break;
+        case 14:
+            T14_Mover_T2_Gate_R();
+            break;
+        case 15:
+            T15_Mover_T2_Sarnem_L();
+            break;
     }
     cout << endl;
 }
@@ -252,6 +379,7 @@ bool RedePetri::Exec()
         for(int i = 0; i < qtd; i++){
             t = (*pool).popTransicao();
             executarTransicao(t);
+            printMarcacoes();
         }
 
         t_h = transicoesHabilitadas();
@@ -259,7 +387,9 @@ bool RedePetri::Exec()
 
         if(size > 0){
             r = rand() % size;
+            printTransicoesHabilitadas(t_h);
             executarTransicao(t_h[r]);
+            printMarcacoes();
         }
         Thread::SleepMS(5);
     }

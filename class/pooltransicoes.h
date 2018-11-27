@@ -3,7 +3,6 @@
 #include "threads/sema.h"
 #include "threads/thread.h"
 #include "threads/task.h"
-#include "mapatrem.h"
 #include "linep.h"
 #include <string>
 #include <opencv2/opencv.hpp>
